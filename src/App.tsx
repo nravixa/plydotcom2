@@ -82,7 +82,7 @@ function App() {
 
   return (
     <Router>
-      <div className="relative min-h-screen flex flex-col">
+      <div className="relative min-h-screen flex flex-col w-full overflow-x-hidden bg-transparent">
         <Navbar />
         <main className="flex-grow">
           <Routes>

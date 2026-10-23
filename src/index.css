@@ -20,20 +20,35 @@
     --color-accent: #D4AF37;
   }
 
-  html,
+  html {
+    @apply text-background font-sans antialiased;
+    background-color: #000000;
+    overflow-x: hidden;
+  }
+
   body {
     @apply text-background font-sans antialiased;
-    background-color: transparent !important;
+    background-color: #000000;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background-color: transparent;
   }
   
   body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+    top: -5%;
+    left: -5%;
+    width: 110vw;
+    height: 110vh;
+    z-index: 0;
     pointer-events: none;
     background-color: #000000; /* Jet Black base */
     background-image: 
@@ -47,8 +62,8 @@
   
   @keyframes pulseBg {
     0% { transform: scale(1) translate(0, 0); }
-    50% { transform: scale(1.1) translate(-2%, 2%); }
-    100% { transform: scale(1) translate(2%, -2%); }
+    50% { transform: scale(1.05) translate(-1%, 1%); }
+    100% { transform: scale(1.02) translate(1%, -1%); }
   }
 
   /* Make sure all sections let the background show through */
