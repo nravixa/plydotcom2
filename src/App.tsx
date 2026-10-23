@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 // Placeholder for future pages
 import Home from './pages/Home'
 import Navbar from './components/navigation/Navbar'
+import ImagePopupModal from './components/ui/ImagePopupModal'
 
 function App() {
   // Initialize Lenis smooth scroll
@@ -83,6 +84,7 @@ function App() {
   return (
     <Router>
       <div className="relative min-h-screen flex flex-col w-full overflow-x-hidden bg-transparent">
+        <ImagePopupModal />
         <Navbar />
         <main className="flex-grow">
           <Routes>
