@@ -104,22 +104,29 @@ Please contact me regarding my requirement.`;
 
       <div className="flex flex-col gap-2">
         <label htmlFor="requirement" className="text-small text-background font-medium tracking-wide">REQUIREMENT / PROJECT TYPE *</label>
-        <select 
-          id="requirement" 
-          name="requirement"
-          value={formData.requirement}
-          onChange={handleChange}
-          className={`w-full bg-transparent border-b ${errors.requirement ? 'border-red-500' : 'border-accent/30'} py-3 text-background focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer rounded-none`}
-          aria-invalid={!!errors.requirement}
-          aria-describedby={errors.requirement ? "requirement-error" : undefined}
-        >
-          <option value="" disabled className="text-primary">Select project type</option>
-          <option value="Home Interior" className="text-primary">Home Interior</option>
-          <option value="Kitchen" className="text-primary">Kitchen</option>
-          <option value="Furniture" className="text-primary">Furniture</option>
-          <option value="Commercial Space" className="text-primary">Commercial Space</option>
-          <option value="Other" className="text-primary">Other</option>
-        </select>
+        <div className="relative w-full">
+          <select 
+            id="requirement" 
+            name="requirement"
+            value={formData.requirement}
+            onChange={handleChange}
+            className={`w-full bg-transparent border-b ${errors.requirement ? 'border-red-500' : 'border-accent/30'} py-3 pr-8 text-background focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer rounded-none`}
+            aria-invalid={!!errors.requirement}
+            aria-describedby={errors.requirement ? "requirement-error" : undefined}
+          >
+            <option value="" disabled className="text-primary">Select project type</option>
+            <option value="Home Interior" className="text-primary">Home Interior</option>
+            <option value="Kitchen" className="text-primary">Kitchen</option>
+            <option value="Furniture" className="text-primary">Furniture</option>
+            <option value="Commercial Space" className="text-primary">Commercial Space</option>
+            <option value="Other" className="text-primary">Other</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1 text-accent/80">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
         {errors.requirement && <span id="requirement-error" className="text-xs text-red-500 mt-1">{errors.requirement}</span>}
       </div>
 

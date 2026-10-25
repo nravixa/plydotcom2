@@ -59,12 +59,23 @@ const PlywoodShowcase: React.FC = () => {
           "-=0.6"
         );
       });
-    }, sectionRef);
+    }, sectionRef.current || undefined);
 
     return () => {
       ctx.revert();
     };
   }, []);
+
+  const handleSelectCategory = (category: string) => {
+    window.dispatchEvent(new CustomEvent('scroll-to', { detail: '#contact' }));
+    setTimeout(() => {
+      const select = document.querySelector('select#requirement, select[name="requirement"]') as HTMLSelectElement | null;
+      if (select) {
+        select.value = category;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, 400);
+  };
 
   return (
     <section ref={sectionRef} className="w-full bg-primary pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-12 border-t border-accent/10">
@@ -81,8 +92,18 @@ const PlywoodShowcase: React.FC = () => {
         <div ref={galleryRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           
           {/* Panel 1 - Home Interiors */}
-          <div className="flex flex-col gap-4 showcase-panel group cursor-pointer">
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl">
+          <div 
+            onClick={() => handleSelectCategory('Home Interior')}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectCategory('Home Interior'); }}
+            role="button"
+            tabIndex={0}
+            aria-label="Enquire about Home Interior Plywood"
+            className="flex flex-col gap-4 showcase-panel group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[2rem]"
+          >
+            <div 
+              className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl border border-white/5 group-hover:border-accent/40 transition-colors duration-500"
+              style={{ aspectRatio: '4 / 3' }}
+            >
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
               <img 
                 src={homeImg} 
@@ -92,16 +113,31 @@ const PlywoodShowcase: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 z-20 pointer-events-none opacity-50"></div>
               
-              <div className="showcase-label absolute bottom-6 left-6 right-6 z-30 bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center gap-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-sm text-accent font-bold tracking-widest bg-black/20 px-3 py-1 rounded-full border border-white/5">01</span>
-                <h3 className="text-h3 text-white">HOME INTERIORS</h3>
+              <div className="showcase-label absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 flex items-center justify-between transform translate-y-1 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+                  <span className="text-[11px] sm:text-xs md:text-sm text-accent font-bold tracking-widest bg-black/50 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/10">01</span>
+                  <h3 className="text-sm sm:text-lg md:text-h3 text-white tracking-wide">HOME INTERIORS</h3>
+                </div>
+                <span className="text-accent text-xs font-medium hidden sm:inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Enquire →
+                </span>
               </div>
             </div>
           </div>
 
           {/* Panel 2 - Kitchens */}
-          <div className="flex flex-col gap-4 showcase-panel group cursor-pointer">
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl">
+          <div 
+            onClick={() => handleSelectCategory('Kitchen')}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectCategory('Kitchen'); }}
+            role="button"
+            tabIndex={0}
+            aria-label="Enquire about Kitchen Plywood"
+            className="flex flex-col gap-4 showcase-panel group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[2rem]"
+          >
+            <div 
+              className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl border border-white/5 group-hover:border-accent/40 transition-colors duration-500"
+              style={{ aspectRatio: '4 / 3' }}
+            >
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
               <img 
                 src={kitchenImg} 
@@ -111,16 +147,31 @@ const PlywoodShowcase: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 z-20 pointer-events-none opacity-50"></div>
               
-              <div className="showcase-label absolute bottom-6 left-6 right-6 z-30 bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center gap-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-sm text-accent font-bold tracking-widest bg-black/20 px-3 py-1 rounded-full border border-white/5">02</span>
-                <h3 className="text-h3 text-white">KITCHENS</h3>
+              <div className="showcase-label absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 flex items-center justify-between transform translate-y-1 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+                  <span className="text-[11px] sm:text-xs md:text-sm text-accent font-bold tracking-widest bg-black/50 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/10">02</span>
+                  <h3 className="text-sm sm:text-lg md:text-h3 text-white tracking-wide">KITCHENS</h3>
+                </div>
+                <span className="text-accent text-xs font-medium hidden sm:inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Enquire →
+                </span>
               </div>
             </div>
           </div>
 
           {/* Panel 3 - Furniture */}
-          <div className="flex flex-col gap-4 showcase-panel group cursor-pointer">
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl">
+          <div 
+            onClick={() => handleSelectCategory('Furniture')}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectCategory('Furniture'); }}
+            role="button"
+            tabIndex={0}
+            aria-label="Enquire about Furniture Plywood"
+            className="flex flex-col gap-4 showcase-panel group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[2rem]"
+          >
+            <div 
+              className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl border border-white/5 group-hover:border-accent/40 transition-colors duration-500"
+              style={{ aspectRatio: '4 / 3' }}
+            >
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
               <img 
                 src={furnitureImg} 
@@ -130,16 +181,31 @@ const PlywoodShowcase: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 z-20 pointer-events-none opacity-50"></div>
               
-              <div className="showcase-label absolute bottom-6 left-6 right-6 z-30 bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center gap-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-sm text-accent font-bold tracking-widest bg-black/20 px-3 py-1 rounded-full border border-white/5">03</span>
-                <h3 className="text-h3 text-white">FURNITURE</h3>
+              <div className="showcase-label absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 flex items-center justify-between transform translate-y-1 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+                  <span className="text-[11px] sm:text-xs md:text-sm text-accent font-bold tracking-widest bg-black/50 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/10">03</span>
+                  <h3 className="text-sm sm:text-lg md:text-h3 text-white tracking-wide">FURNITURE</h3>
+                </div>
+                <span className="text-accent text-xs font-medium hidden sm:inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Enquire →
+                </span>
               </div>
             </div>
           </div>
 
           {/* Panel 4 - Commercial Spaces */}
-          <div className="flex flex-col gap-4 showcase-panel group cursor-pointer">
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl">
+          <div 
+            onClick={() => handleSelectCategory('Commercial Space')}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleSelectCategory('Commercial Space'); }}
+            role="button"
+            tabIndex={0}
+            aria-label="Enquire about Commercial Space Plywood"
+            className="flex flex-col gap-4 showcase-panel group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-[2rem]"
+          >
+            <div 
+              className="relative w-full aspect-[4/3] overflow-hidden bg-secondary/20 rounded-[2rem] shadow-2xl border border-white/5 group-hover:border-accent/40 transition-colors duration-500"
+              style={{ aspectRatio: '4 / 3' }}
+            >
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
               <img 
                 src={commercialImg} 
@@ -149,9 +215,14 @@ const PlywoodShowcase: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 z-20 pointer-events-none opacity-50"></div>
               
-              <div className="showcase-label absolute bottom-6 left-6 right-6 z-30 bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center gap-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-sm text-accent font-bold tracking-widest bg-black/20 px-3 py-1 rounded-full border border-white/5">04</span>
-                <h3 className="text-h3 text-white">COMMERCIAL SPACES</h3>
+              <div className="showcase-label absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 flex items-center justify-between transform translate-y-1 sm:translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+                  <span className="text-[11px] sm:text-xs md:text-sm text-accent font-bold tracking-widest bg-black/50 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/10">04</span>
+                  <h3 className="text-sm sm:text-lg md:text-h3 text-white tracking-wide">COMMERCIAL SPACES</h3>
+                </div>
+                <span className="text-accent text-xs font-medium hidden sm:inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Enquire →
+                </span>
               </div>
             </div>
           </div>

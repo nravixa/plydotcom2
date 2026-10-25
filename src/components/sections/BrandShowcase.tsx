@@ -32,7 +32,7 @@ const BrandShowcase: React.FC = () => {
       gsap.set(items, { opacity: 0, y: 15 });
 
       tl.to(items, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' });
-    }, sectionRef);
+    }, sectionRef.current || undefined);
 
     return () => {
       ctx.revert();
@@ -40,20 +40,20 @@ const BrandShowcase: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-primary py-12 md:py-20 px-6 md:px-12">
+    <section ref={sectionRef} className="w-full bg-primary py-12 md:py-20 px-4 sm:px-6 md:px-12">
       <div className="max-w-[1600px] mx-auto flex flex-col items-center text-center">
         
-        <p className="text-eyebrow text-accent mb-12">
+        <p className="text-eyebrow text-accent mb-8 md:mb-12">
           SELECTED MATERIAL BRANDS
         </p>
 
-        <ul ref={listRef} className="w-full flex flex-wrap items-center justify-center gap-6 md:gap-8">
+        <ul ref={listRef} className="w-full flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8">
           {PARTNER_BRANDS.map((brand) => (
             <li 
               key={brand.id} 
-              className="brand-item px-10 py-6 md:px-16 md:py-8 flex items-center justify-center rounded-[2rem] bg-black/10 backdrop-blur-md border border-white/10 shadow-xl hover:bg-white/5 transition-all duration-300 cursor-default"
+              className="brand-item px-6 py-4 sm:px-10 sm:py-6 md:px-16 md:py-8 flex items-center justify-center rounded-2xl sm:rounded-[2rem] bg-black/10 backdrop-blur-md border border-white/10 shadow-xl hover:bg-white/5 transition-all duration-300 cursor-default"
             >
-              <span className="text-h3 md:text-h2 font-serif text-background/90 tracking-widest uppercase hover:text-white transition-colors duration-300">
+              <span className="text-xl sm:text-2xl md:text-h2 font-serif text-background/90 tracking-widest uppercase hover:text-white transition-colors duration-300">
                 {brand.name}
               </span>
             </li>

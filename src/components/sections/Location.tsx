@@ -34,7 +34,7 @@ const Location: React.FC = () => {
       tl.to(leftElements, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' })
         .to(mapEl, { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power3.inOut' }, "-=0.4")
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, "-=0.6");
-    }, sectionRef);
+    }, sectionRef.current || undefined);
 
     return () => {
       ctx.revert();
@@ -103,8 +103,8 @@ const Location: React.FC = () => {
           </div>
 
           {/* Right Column - Map Embed */}
-          <div className="lg:col-span-7 w-full h-[400px] lg:h-[450px] mt-8 lg:mt-0">
-            <div ref={mapColRef} className="w-full h-full rounded-3xl overflow-hidden shadow-2xl">
+          <div className="lg:col-span-7 w-full h-[300px] sm:h-[380px] lg:h-[450px] mt-8 lg:mt-0">
+            <div ref={mapColRef} className="w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <MapEmbed />
             </div>
           </div>

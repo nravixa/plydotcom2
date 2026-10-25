@@ -65,6 +65,25 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isOpen, onClose]);
 
+  // Handle navigation click with immediate Lenis reactivation
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    onClose();
+    document.body.style.overflow = '';
+    const lenis = (window as unknown as { __lenis?: { start: () => void; scrollTo: (target: string | HTMLElement | number, options?: object) => void } }).__lenis;
+    lenis?.start();
+    setTimeout(() => {
+      if (href === '#home') {
+        lenis?.scrollTo(0, { duration: 1.2 });
+      } else {
+        const target = document.querySelector(href);
+        if (target) {
+          lenis?.scrollTo(target as HTMLElement, { duration: 1.2, offset: -80 });
+        }
+      }
+    }, 100);
+  };
+
   return (
     <div 
       ref={menuRef}
@@ -74,11 +93,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     >
       <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full">
         <nav ref={linksRef} className="flex flex-col gap-6 text-center mb-12">
-          <a href="#home" onClick={onClose} className="text-h2 text-background hover:text-accent transition-colors">Home</a>
-          <a href="#products" onClick={onClose} className="text-h2 text-background hover:text-accent transition-colors">Products</a>
-          <a href="#about" onClick={onClose} className="text-h2 text-background hover:text-accent transition-colors">About</a>
-          <a href="#showroom" onClick={onClose} className="text-h2 text-background hover:text-accent transition-colors">Showroom</a>
-          <a href="#contact" onClick={onClose} className="text-h2 text-background hover:text-accent transition-colors">Contact</a>
+          <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="text-h2 text-background hover:text-accent transition-colors">Home</a>
+          <a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="text-h2 text-background hover:text-accent transition-colors">Products</a>
+          <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="text-h2 text-background hover:text-accent transition-colors">About</a>
+          <a href="#showroom" onClick={(e) => handleNavClick(e, '#showroom')} className="text-h2 text-background hover:text-accent transition-colors">Showroom</a>
+          <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="text-h2 text-background hover:text-accent transition-colors">Contact</a>
         </nav>
 
         <div className="mt-auto flex flex-col items-center gap-6 opacity-0 translate-y-4" style={{

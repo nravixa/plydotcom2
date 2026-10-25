@@ -32,7 +32,7 @@ const Enquiry: React.FC = () => {
 
       tl.to(leftElements, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' })
         .to(formEl, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, "-=0.4");
-    }, sectionRef);
+    }, sectionRef.current || undefined);
 
     return () => {
       ctx.revert();
@@ -83,7 +83,7 @@ const Enquiry: React.FC = () => {
           </div>
 
           {/* Right Column - Quick Enquiry Form */}
-          <div ref={formColRef} className="lg:col-span-6 lg:col-start-7 bg-secondary/40 rounded-3xl p-8 md:p-12 lg:p-16 border border-accent/10">
+          <div ref={formColRef} className="lg:col-span-6 lg:col-start-7 bg-secondary/40 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 border border-accent/10">
             <h3 className="text-h3 text-background mb-8">Send an Enquiry</h3>
             <EnquiryForm />
           </div>

@@ -50,7 +50,7 @@ const Expertise: React.FC = () => {
       
       tl.to(listItems, { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' }, "-=0.8")
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, "-=0.4");
-    }, sectionRef);
+    }, sectionRef.current || undefined);
 
     return () => {
       ctx.revert();
@@ -73,8 +73,12 @@ const Expertise: React.FC = () => {
               <span className="italic text-accent">THE RIGHT GUIDANCE.</span>
             </h2>
             
-            <div ref={mediaRef} className="w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] mt-12 lg:mt-24 rounded-[2rem] overflow-hidden shadow-2xl relative group">
-              <MaterialDetailMedia className="h-full sepia-[.30] hue-rotate-[-10deg] saturate-150 brightness-110" />
+            <div 
+              ref={mediaRef} 
+              className="w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] mt-8 lg:mt-16 rounded-[2rem] overflow-hidden shadow-2xl relative group"
+              style={{ aspectRatio: '4 / 3', minHeight: '280px' }}
+            >
+              <MaterialDetailMedia className="h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10 z-20 pointer-events-none opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
               
               {/* Floating Glassmorphic Tag */}
@@ -88,47 +92,47 @@ const Expertise: React.FC = () => {
           {/* Right Column: Expertise List & CTA */}
           <div className="lg:col-span-5 lg:col-start-8 flex flex-col pt-4 lg:pt-12">
             
-            <div ref={listRef} className="flex flex-col gap-6 md:gap-8 mb-16">
+            <div ref={listRef} className="flex flex-col gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16">
               
               {/* Item 01 */}
-              <div className="expertise-item flex gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
-                <span className="text-small text-accent font-medium tracking-widest mt-1 bg-black/20 px-3 py-1 rounded-full border border-white/5 h-fit">01</span>
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-h3 text-white text-lg md:text-xl uppercase tracking-wide">UNDERSTAND THE REQUIREMENT</h3>
-                  <p className="text-body text-white/70">
+              <div className="expertise-item flex gap-4 sm:gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
+                <span className="text-small text-accent font-medium tracking-widest mt-0.5 sm:mt-1 bg-black/20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/5 h-fit flex-shrink-0">01</span>
+                <div className="flex flex-col gap-2 sm:gap-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-medium text-white uppercase tracking-wide">UNDERSTAND THE REQUIREMENT</h3>
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     Start with where and how the plywood will be used. Every space has distinct material demands.
                   </p>
                 </div>
               </div>
 
               {/* Item 02 */}
-              <div className="expertise-item flex gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
-                <span className="text-small text-accent font-medium tracking-widest mt-1 bg-black/20 px-3 py-1 rounded-full border border-white/5 h-fit">02</span>
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-h3 text-white text-lg md:text-xl uppercase tracking-wide">CHOOSE THE RIGHT PLYWOOD</h3>
-                  <p className="text-body text-white/70">
+              <div className="expertise-item flex gap-4 sm:gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
+                <span className="text-small text-accent font-medium tracking-widest mt-0.5 sm:mt-1 bg-black/20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/5 h-fit flex-shrink-0">02</span>
+                <div className="flex flex-col gap-2 sm:gap-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-medium text-white uppercase tracking-wide">CHOOSE THE RIGHT PLYWOOD</h3>
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     Explore suitable plywood options curated for your intended application, balancing durability and finish.
                   </p>
                 </div>
               </div>
 
               {/* Item 03 */}
-              <div className="expertise-item flex gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
-                <span className="text-small text-accent font-medium tracking-widest mt-1 bg-black/20 px-3 py-1 rounded-full border border-white/5 h-fit">03</span>
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-h3 text-white text-lg md:text-xl uppercase tracking-wide">COMPARE AVAILABLE OPTIONS</h3>
-                  <p className="text-body text-white/70">
+              <div className="expertise-item flex gap-4 sm:gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
+                <span className="text-small text-accent font-medium tracking-widest mt-0.5 sm:mt-1 bg-black/20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/5 h-fit flex-shrink-0">03</span>
+                <div className="flex flex-col gap-2 sm:gap-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-medium text-white uppercase tracking-wide">COMPARE AVAILABLE OPTIONS</h3>
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     Discuss material properties, core strength, and finishes directly with the Ply Dot Com team.
                   </p>
                 </div>
               </div>
 
               {/* Item 04 */}
-              <div className="expertise-item flex gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
-                <span className="text-small text-accent font-medium tracking-widest mt-1 bg-black/20 px-3 py-1 rounded-full border border-white/5 h-fit">04</span>
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-h3 text-white text-lg md:text-xl uppercase tracking-wide">MAKE AN INFORMED DECISION</h3>
-                  <p className="text-body text-white/70">
+              <div className="expertise-item flex gap-4 sm:gap-6 md:gap-8 bg-black/10 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 md:p-8 shadow-xl hover:bg-white/5 transition-colors duration-300">
+                <span className="text-small text-accent font-medium tracking-widest mt-0.5 sm:mt-1 bg-black/20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-white/5 h-fit flex-shrink-0">04</span>
+                <div className="flex flex-col gap-2 sm:gap-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-medium text-white uppercase tracking-wide">MAKE AN INFORMED DECISION</h3>
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     Get the practical information you need and decide with complete confidence for your project.
                   </p>
                 </div>

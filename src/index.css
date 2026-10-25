@@ -11,6 +11,50 @@
   --font-serif: "Cormorant Garamond", serif;
 }
 
+@utility aspect-4/3 {
+  aspect-ratio: 4 / 3;
+}
+@utility aspect-3/2 {
+  aspect-ratio: 3 / 2;
+}
+@utility aspect-3/4 {
+  aspect-ratio: 3 / 4;
+}
+@utility aspect-4/5 {
+  aspect-ratio: 4 / 5;
+}
+@utility aspect-16/10 {
+  aspect-ratio: 16 / 10;
+}
+@utility aspect-21/9 {
+  aspect-ratio: 21 / 9;
+}
+@utility aspect-9/16 {
+  aspect-ratio: 9 / 16;
+}
+
+[class*="aspect-[4/3]"] {
+  aspect-ratio: 4 / 3;
+}
+[class*="aspect-[3/2]"] {
+  aspect-ratio: 3 / 2;
+}
+[class*="aspect-[3/4]"] {
+  aspect-ratio: 3 / 4;
+}
+[class*="aspect-[4/5]"] {
+  aspect-ratio: 4 / 5;
+}
+[class*="aspect-[16/10]"] {
+  aspect-ratio: 16 / 10;
+}
+[class*="aspect-[21/9]"] {
+  aspect-ratio: 21 / 9;
+}
+[class*="aspect-[9/16]"] {
+  aspect-ratio: 9 / 16;
+}
+
 @layer base {
   :root {
     --color-primary: #0B2E20;

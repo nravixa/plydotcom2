@@ -54,7 +54,7 @@ const Showroom: React.FC = () => {
 
       tl.to(detailElements, { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' }, "-=0.6")
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, "-=0.4");
-    }, sectionRef);
+    }, sectionRef.current || undefined);
 
     return () => {
       ctx.revert();
@@ -85,7 +85,7 @@ const Showroom: React.FC = () => {
             {/* Small Detail Story block inside left column for mobile flow, but visually anchored */}
             <div ref={detailRef} className="mt-8 md:mt-16 bg-secondary/40 rounded-3xl p-8 border border-accent/10 w-full max-w-sm mx-auto lg:mx-0">
               <p className="text-eyebrow text-background/60 mb-4 tracking-widest">MATERIAL / DETAIL</p>
-              <div className="w-full aspect-[4/3] mb-6 rounded-2xl overflow-hidden">
+              <div className="w-full aspect-[4/3] mb-6 rounded-2xl overflow-hidden" style={{ aspectRatio: '4 / 3' }}>
                 <ShowroomMedia src={detailImg} aspectRatio="auto" className="h-full w-full" />
               </div>
               <p className="text-small text-background/90 italic">
@@ -97,11 +97,14 @@ const Showroom: React.FC = () => {
           {/* Right Column - Large Media & Action */}
           <div className="lg:col-span-7 flex flex-col gap-12 lg:gap-16">
             
-            <div ref={rightColRef} className="w-full rounded-3xl overflow-hidden">
-              {/* Dominant Visual */}
-              <ShowroomMedia 
-                aspectRatio="portrait" 
-              />
+            <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden min-h-[220px] sm:min-h-[320px]" style={{ aspectRatio: '4 / 3' }}>
+              <div ref={rightColRef} className="w-full h-full">
+                {/* Dominant Visual */}
+                <ShowroomMedia 
+                  aspectRatio="auto" 
+                  className="w-full h-full"
+                />
+              </div>
             </div>
 
             {/* CTA Area */}
@@ -112,7 +115,11 @@ const Showroom: React.FC = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                <Button variant="outline" className="w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  className="w-full sm:w-auto cursor-pointer"
+                  onClick={() => window.dispatchEvent(new CustomEvent('scroll-to', { detail: '#contact' }))}
+                >
                   VISIT THE SHOWROOM
                 </Button>
                 <WhatsAppButton 

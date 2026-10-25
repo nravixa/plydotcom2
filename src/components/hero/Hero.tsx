@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
         .to(descRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
         .to(mediaWrapRef.current, { opacity: 1, scale: 1, duration: 1.2 }, "-=0.8");
-    }, heroRef);
+    }, heroRef.current || undefined);
 
     return () => {
       ctx.revert();

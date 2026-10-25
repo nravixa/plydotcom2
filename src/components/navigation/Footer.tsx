@@ -28,9 +28,9 @@ const Footer: React.FC = () => {
       gsap.set(contentRef.current, { opacity: 0, y: 20 });
       gsap.set(ruleRef.current, { scaleX: 0, transformOrigin: 'left' });
 
-      tl.to(contentRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
+      tl.to(contentRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, "-=0.2")
         .to(ruleRef.current, { scaleX: 1, duration: 1, ease: 'power3.inOut' }, "-=0.4");
-    }, footerRef);
+    }, footerRef.current || undefined);
 
     return () => {
       ctx.revert();
